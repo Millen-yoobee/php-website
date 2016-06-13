@@ -10,6 +10,8 @@
     <script src="https://use.fontawesome.com/c9a6fcc362.js"></script>
   </head>
 
+  <?= $this -> section ("content")  ?>
+   <!-- <?php echo $this -> section ("content")  ?>  this is same command as above  -->
 
       <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
