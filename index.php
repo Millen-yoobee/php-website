@@ -3,9 +3,6 @@
 // require stmt below makes everything in the vnedor folder available to use
 require "vendor/autoload.php";
 
- // $plates is the plates library
- // Instantiate (create) an instance of the Plates library
-$plates = new League\Plates\Engine ("app/templates");
 
  // Load appropriate page 
 
@@ -25,7 +22,10 @@ if ( isset( $_GET ["page"] )) {
 
  	//Landing page
  	case "landing":  case "register":
- 		echo $plates -> render ("landing");
+ 		require "app/controllers/LandingController.php";	
+ 		$controller = new LandingController ();
+
+ 		// echo $plates -> render ("landing"); for debugging
  		break;
  	
  	//About page
@@ -47,5 +47,5 @@ if ( isset( $_GET ["page"] )) {
  		echo $plates -> render ("error404");
  		break;
  }
-
+ 	$controller -> buildHTML ();
 
