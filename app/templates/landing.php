@@ -22,9 +22,20 @@
             <a href="" class="button large expanded" id="facebook-login"><i class="fa fa-facebook-official" aria-hidden="true"></i> Continue with Facebook</a>
             <hr>
             <form action="index.php?page=landing" method="post">
-              <input type="text" name="email" placeholder="Email">
+                <!--   name is used by php; id by HTML and CSS -->
+              <input type="text" name="email" placeholder="Email" value="<?= isset( $_POST ["email"]) ? $_POST ["email"] : "" ?>">
+
+              <?php  if ( isset( $emailMessage ) ) :  ?>      
+              <P> <?= $emailMessage ?> </P>
+              <?php    endif; ?>
+
               <input type="password" name="password" placeholder="Create a password">
-              <input type="submit" class="button alert expanded" value="Sign Up">
+
+              <?php  if ( isset( $passwordMessage ) ) :  ?>
+              <P> <?= $passwordMessage ?> </P>
+              <?php    endif; ?>
+
+              <input type="submit" name= "new-account" class="button alert expanded" value="Sign Up">
             </form>
             <small>Creating an account means you're OK with Pinterest's <a href="">Terms of Service</a> and <a href="">Privacy Policy</a></small>
           </div>

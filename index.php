@@ -7,14 +7,18 @@ require "vendor/autoload.php";
  // Load appropriate page 
 
 // First ask if the user has requested a page
-if ( isset( $_GET ["page"] )) {
-	// Requested page
-	$page = $_GET ["page"];
+// if ( isset( $_GET ["page"] )) {
+// 	// Requested page
+// 	$page = $_GET ["page"];
+//   }
+//  else {
+// 	$page = "landing";
+//   }
+// lines 9 to 17 can be written in the following way
 
- }
- else {
-	$page = "landing";
- }
+$page = isset ( $_GET [ "page"]) ? $_GET ["page"] : "landing";
+
+
 
 // Load the appropriate files based on page
 
