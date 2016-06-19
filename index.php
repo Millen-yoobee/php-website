@@ -1,6 +1,9 @@
 <?php
+ // phpinfo(); toget info of php version
 
-// require stmt below makes everything in the vnedor folder available to use
+session_start();
+
+ // require stmt below makes everything in the vnedor folder available to use
 require "vendor/autoload.php";
 
 
@@ -18,6 +21,9 @@ require "vendor/autoload.php";
 
 $page = isset ( $_GET [ "page"]) ? $_GET ["page"] : "landing";
 
+// Connect to the database
+$dbc = new mysqli("localhost", "root", "", "pinterest");
+
 
 
 // Load the appropriate files based on page
@@ -25,9 +31,10 @@ $page = isset ( $_GET [ "page"]) ? $_GET ["page"] : "landing";
  switch ($page) {
 
  	//Landing page
- 	case "landing":  case "register":
+ 	case "landing":  
+ 	case "register":
  		require "app/controllers/LandingController.php";	
- 		$controller = new LandingController ();
+ 		$controller = new LandingController ($dbc);
 
  		// echo $plates -> render ("landing"); for debugging
  		break;
@@ -44,7 +51,7 @@ $page = isset ( $_GET [ "page"]) ? $_GET ["page"] : "landing";
 
  	//Stream page
  	case "stream":
- 		echo $plates -> render ("stream");
+ 		
  		break;
 
  	default:
