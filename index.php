@@ -5,6 +5,7 @@ session_start();
 
  // require stmt below makes everything in the vnedor folder available to use
 require "vendor/autoload.php";
+require "app/controllers/PageController.php";
 
 
  // Load appropriate page 
@@ -51,7 +52,8 @@ $dbc = new mysqli("localhost", "root", "", "pinterest");
 
  	//Stream page
  	case "stream":
- 		
+ 		require "app/controllers/StreamController.php";
+ 		$controller = new StreamController ($dbc);
  		break;
 
  	default:
