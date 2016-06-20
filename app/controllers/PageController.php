@@ -5,7 +5,12 @@
 		protected $title;
 		Protected $metadesc;
 		protected $dbc;
+		protected $plates;
 
+		public function __construct() {
+			$this->plates = new League\Plates\Engine ("app/templates");
+
+		}
 	  // Force children classes to have the 
 	abstract public function buildHTML();
 
