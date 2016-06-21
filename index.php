@@ -56,6 +56,14 @@ $dbc = new mysqli("localhost", "root", "", "pinterest");
  		$controller = new StreamController ($dbc);
  		break;
 
+ 	 //Account page
+ 	case "account":
+ 		require "app/controllers/AccountController.php";
+ 		$controller = new AccountController ($dbc);
+ 		break;
+
+ 		
+
  	default:
  		echo $plates -> render ("error404");
  		break;

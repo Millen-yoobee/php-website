@@ -15,7 +15,7 @@
         </form>
       </div>
       <div class="columns large-2" id="account-bar">
-        <a href="account.html" class="button secondary">
+        <a href="index.php?page=account" class="button secondary">
           <img src="http://placehold.it/16" alt="">
           Your Name
         </a>
