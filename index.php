@@ -47,7 +47,9 @@ $dbc = new mysqli("localhost", "root", "", "pinterest");
  	
  	//Login page
  	case "login":
- 		echo $plates -> render ("login");
+ 		require "app/controllers/LoginController.php";
+ 		$controller = new LoginController ($dbc);
+
  		break;
 
  	//Stream page
@@ -62,7 +64,11 @@ $dbc = new mysqli("localhost", "root", "", "pinterest");
  		$controller = new AccountController ($dbc);
  		break;
 
- 		
+  	case "post":
+ 		require "app/controllers/PostController.php";
+ 		$controller = new PostController ($dbc);
+ 		break;
+		
 
  	default:
  		echo $plates -> render ("error404");
