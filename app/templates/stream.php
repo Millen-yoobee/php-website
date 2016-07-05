@@ -31,7 +31,7 @@
       <article class="grid-item">
         
         <a href="index.php?page=post&postid=<?= $item['id'] ?>">
-          <img src="<?= $item['image'] ?>" alt="">
+          <img src="img/uploads/stream/<?= $item['image'] ?>" alt="">
         </a>
         <br>
         <br>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class PostController extends PageController { 
 
@@ -9,7 +9,15 @@ class PostController extends PageController {
 
 		$this->dbc = $dbc;
 
-		$this->getPostData();
+		 //Did the user add a comment?
+		if ( isset($_POST["new-comment"]) ) {
+			$this->processNewComment();
+		 }
+
+
+		 $this->getPostData();
+
+
 
 	 }
 
@@ -45,10 +53,65 @@ class PostController extends PageController {
 			$lName = $this->data["post"]["last_name"];
 			if ( !$fName && !$lName ) {
 				$this->data["post"]["first_name"] = "Anon";
-			}
-
-
+			 }
 		  }
 
+		 // Get all the comments
+		$sql = "SELECT user_id, comment, CONCAT(first_name, ' ', last_name) AS author
+				FROM comments
+				JOIN users
+				ON comments.user_id = users.id
+
+				WHERE post_id = $postID
+				ORDER BY created_at DESC";
+
+		$result = $this->dbc->query($sql);
+
+		 // Extract the data associate array
+		$this->data["allComments"] = $result->fetch_all(MYSQLI_ASSOC); // To extract all comments as an array
+			// echo '<pre>';          // for debugging purposes
+			// print_r($allComments);          // for debugging purposes
+			// die();         // for debugging purposes
+
+	   }
+
+	private function processNewComment() {
+		 // Validate the comment
+		$totalErrors = 0;
+
+		 // Minimum length
+
+
+		 // Maximum length
+
+
+		 // If passed, add to database
+		if ( $totalErrors == 0 ) {
+			 # Filter the comment...
+			$comment = $this->dbc->real_escape_string($_POST["comment"]);
+									// POST is from the Form
+			$userID = $_SESSION["id"];
+			$postID = $this->dbc->real_escape_string($_GET["postid"]);
+									// GET is from the url address
+			 // Prepare the SQL
+			$sql = "INSERT INTO comments (comment, user_id, post_id
+					VALUES ('$comment', $userID, $postID)";
+
+			 // Run the query
+			$this->dbc->query($sql);
+
+			 // Make sure the query worked
+
+		 }
+
 	 }
+
+
+
+
+
+
+
+
+
  }
